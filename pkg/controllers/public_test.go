@@ -68,34 +68,6 @@ func TestSignUpInvalidJSON(t *testing.T) {
 	assert.Equal(t, 400, w.Code)
 }
 
-func TestLogin(t *testing.T) {
-	user := LoginPayload{
-		Email:    "jwt@email.com",
-		Password: "secret",
-	}
-
-	payload, err := json.Marshal(&user)
-	assert.NoError(t, err)
-
-	request, err := http.NewRequest("POST", "/api/public/login", bytes.NewBuffer(payload))
-	assert.NoError(t, err)
-
-	w := httptest.NewRecorder()
-
-	c, _ := gin.CreateTestContext(w)
-	c.Request = request
-
-	err = database.InitDatabase()
-	assert.NoError(t, err)
-
-	database.GlobalDB.AutoMigrate(&u.User{})
-
-	Login(c)
-
-	assert.Equal(t, 200, w.Code)
-
-}
-
 func TestLoginInvalidJSON(t *testing.T) {
 	user := "test"
 
