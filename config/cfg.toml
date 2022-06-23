@@ -1,0 +1,4 @@
+IsProd = false
+IsDev = true
+ServerHost = ":8089"
+DataBase = "market.db"
