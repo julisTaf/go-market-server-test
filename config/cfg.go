@@ -18,5 +18,5 @@ func SetConfig() (cfg Config, err error) {
 			return
 		}
 	}
-	return cfg, err
+	return cfg, nil
 }
